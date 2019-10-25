@@ -23,6 +23,17 @@
   "bugs": {
     "url": "https://github.com/ridakk/nexit/issues"
   },
+  "keywords": [
+    "graceful",
+    "uncaught",
+    "uncaughtException",
+    "error",
+    "graceful",
+    "cluster",
+    "graceful exit",
+    "exit",
+    "zero dependency"
+  ],
   "homepage": "https://github.com/ridakk/nexit#readme",
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
