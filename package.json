@@ -7,6 +7,7 @@
     "cm": "git-cz",
     "release": "standard-version",
     "build": "./node_modules/.bin/tsc",
+    "lint": "eslint '**/*.ts'",
     "test": "./node_modules/.bin/jest --verbose --detectOpenHandles --forceExit --maxWorkers 2",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "coverage": "./node_modules/.bin/jest --coverage --verbose"
