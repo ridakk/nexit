@@ -4,6 +4,8 @@
   "description": "Tiny dependency free utility to exit NodeJs gracefully",
   "main": "./dist/index.js",
   "scripts": {
+    "cm": "git-cz",
+    "release": "standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,23 @@
   "bugs": {
     "url": "https://github.com/ridakk/nexit/issues"
   },
-  "homepage": "https://github.com/ridakk/nexit#readme"
+  "homepage": "https://github.com/ridakk/nexit#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.0.9",
+    "standard-version": "^7.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
 }
