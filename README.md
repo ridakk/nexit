@@ -8,7 +8,7 @@
 ## Install
 
 ```bash
-npm install graceful
+npm install nexit
 ```
 
 ## API
