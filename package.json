@@ -1,0 +1,19 @@
+{
+  "name": "nexit",
+  "version": "1.0.0",
+  "description": "Tiny dependency free utility to exit NodeJs gracefully",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ridakk/nexit.git"
+  },
+  "author": "Kadir Goktas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ridakk/nexit/issues"
+  },
+  "homepage": "https://github.com/ridakk/nexit#readme"
+}
