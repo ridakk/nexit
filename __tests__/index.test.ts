@@ -1,4 +1,4 @@
-import { Nexit, NEXIT_EXIT, NEXIT_SHUTDOWN } from './index';
+import { Nexit, NEXIT_EXIT, NEXIT_SHUTDOWN } from '../src/index';
 
 jest.useFakeTimers();
 

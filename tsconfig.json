@@ -9,16 +9,16 @@
         "sourceMap": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "outDir": "dist/",
+        "outDir": "lib/",
         "target": "es5",
         "lib": ["es5", "es6", "dom", "esnext.asynciterable"]
     },
     "include": [
-        "**/*"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",
-        "dist",
-        "**/*.test.ts"
+        "lib",
+        "src/**/*.test.ts"
     ]
 }

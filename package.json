@@ -2,12 +2,14 @@
   "name": "nexit",
   "version": "1.0.0",
   "description": "Tiny dependency free utility to exit NodeJs gracefully",
-  "main": "./dist/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": ["lib/**/*"],
   "scripts": {
     "cm": "git-cz",
     "release": "standard-version",
     "build": "./node_modules/.bin/tsc",
-    "lint": "eslint '**/*.ts'",
+    "lint": "eslint 'src/*.ts'",
     "test": "./node_modules/.bin/jest --verbose --detectOpenHandles --forceExit --maxWorkers 2",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "coverage": "./node_modules/.bin/jest --coverage --verbose"
