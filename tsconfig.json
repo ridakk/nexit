@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "removeComments": false, // required as swagger-jsdoc is used to generate swagger definition from javadocs
+        "removeComments": true,
         "preserveConstEnums": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "declaration": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "outDir": "dist/",
