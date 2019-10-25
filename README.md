@@ -20,39 +20,65 @@ Constructor parameters
 | options.shutdownDelay | 30000 | shutdown delay(ms) |
 | options.exitDelay | 300 | exit delay(ms) |
 
+## Quick Start
+
+```js
+const Nexit = require('nexit');
+
+new Nexit.Nexit();
+```
+
+or
+
+```js
+import { Nexit } from 'nexit';
+
+new Nexit();
+```
+
 ## Usage
 
 Simple `healthz` route implementation for ExpressJs.
 
 ```js
 const express = require('express');
-const Nexit =  require('nexit');
+const Nexit = require('nexit');
 
-var app = express()
+const app = express();
 
-const nexit = new Nexit();
-nexit.on('NEXIT_SHUTDOWN', () => {
-    console.log('server is shutting down...')
-    app.set('isShuttingDown', true);
+console.log(Nexit);
+
+const nexit = new Nexit.Nexit();
+nexit.on(Nexit.NEXIT_SHUTDOWN, () => {
+  console.log('server is shutting down...');
+  app.set('isShuttingDown', true);
 });
-nexit.on('NEXIT_EXIT', () => {
-    console.log('server is exiting...')
+nexit.on(Nexit.NEXIT_EXIT, () => {
+  console.log('server is exiting...');
 });
 
-app.get(/healthz, (req, res) => {
-    const isShuttingDown = app.get('isShuttingDown');
+app.get('/healthz', (req, res) => {
+  const isShuttingDown = app.get('isShuttingDown');
 
-    if (isShuttingDown) {
-      response.status(503).send({
-        message: 'shutting down',
-      });
-      return;
-    }
-
-    response.status(200).send({
-      message: 'ok',
+  if (isShuttingDown) {
+    res.status(503).send({
+      message: 'shutting down',
     });
-})
+    return;
+  }
 
-var server = app.listen(8080);
+  res.status(200).send({
+    message: 'ok',
+  });
+});
+
+app.listen(8080);
+```
+
+See `./demo` for a working example;
+
+```bash
+cd ./demo
+npm install
+node index.js
 ```
