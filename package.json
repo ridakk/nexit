@@ -1,10 +1,12 @@
 {
   "name": "nexit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny dependency free utility to exit NodeJs gracefully",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "cm": "git-cz",
     "release": "standard-version",
