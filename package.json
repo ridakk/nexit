@@ -1,6 +1,6 @@
 {
   "name": "nexit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tiny dependency free utility to exit NodeJs gracefully",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
