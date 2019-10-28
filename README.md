@@ -36,6 +36,19 @@ import { Nexit } from 'nexit';
 new Nexit();
 ```
 
+## Description
+
+This library aims to delay process exit by a configurable amount of time to let service/traffic orchestrator to stop routing active traffic so that the process can be killed safely.
+
+1. `SIGINT`, `SIGTERM` and `uncaughtException` signals
+2. start a timer with `shutdownDelay` after catching one of the signals above.
+3. fire an event with `NEXIT_SHUTDOWN` to let application know about the state
+> application can use this event for its `healthz` route as below.
+4. once `shutdownDelay` timer is expired, start a new timer with `exitDelay`
+5. fire an event with `NEXIT_EXIT` to let application know about the state
+6. at this point, application may exit on its own at any time if node event loop is fully cleared
+7. once `exitDelay` timer is expired, application will be killed forcefully by `process.exit` command
+
 ## Usage
 
 Simple `healthz` route implementation for ExpressJs.
