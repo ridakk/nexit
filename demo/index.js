@@ -1,16 +1,14 @@
-import express from 'express';
-import { Nexit, NEXIT_EXIT, NEXIT_SHUTDOWN } from 'nexit';
+const express = require('express');
+const Nexit = require('nexit');
 
 const app = express();
 
-console.log(Nexit);
-
-const nexit = new Nexit();
-nexit.on(NEXIT_SHUTDOWN, () => {
+const nexit = new Nexit.Nexit();
+nexit.on(Nexit.NEXIT_SHUTDOWN, () => {
   console.log('server is shutting down...');
   app.set('isShuttingDown', true);
 });
-nexit.on(NEXIT_EXIT, () => {
+nexit.on(Nexit.NEXIT_EXIT, () => {
   console.log('server is exiting...');
 });
 
