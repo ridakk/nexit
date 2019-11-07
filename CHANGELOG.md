@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/ridakk/nexit/compare/v1.0.3...v1.0.4) (2019-11-07)
+
+
+### Bug Fixes
+
+* emit error ([bf9ae10](https://github.com/ridakk/nexit/commit/bf9ae106705a292a75db65b5dc8c4619d53cba28))
+
 ### [1.0.3](https://github.com/ridakk/nexit/compare/v1.0.2...v1.0.3) (2019-10-28)
 
 ### [1.0.2](https://github.com/ridakk/nexit/compare/v1.0.1...v1.0.2) (2019-10-25)
