@@ -33,14 +33,14 @@ class Nexit extends EventEmitter {
     process.removeAllListeners('SIGINT');
   }
 
-  private graceful(): void {
+  private graceful(err: Error): void {
     if (this.isShuttingDown) {
       return;
     }
 
     this.isShuttingDown = true;
     this.unbindHandlers();
-    this.emit(NEXIT_SHUTDOWN);
+    this.emit(NEXIT_SHUTDOWN, err);
 
     setTimeout(() => {
       this.emit(NEXIT_EXIT);
