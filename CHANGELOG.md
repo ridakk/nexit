@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/ridakk/nexit/compare/v1.0.4...v1.0.5) (2020-08-24)
+
+
+### Bug Fixes
+
+* emit error and signal to listeners ([851f6ae](https://github.com/ridakk/nexit/commit/851f6ae205d7906ac291671c28cea4165c64a5a4))
+
 ### [1.0.4](https://github.com/ridakk/nexit/compare/v1.0.3...v1.0.4) (2019-11-07)
 
 
