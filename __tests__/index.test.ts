@@ -36,10 +36,11 @@ describe('Nexit', () => {
     expect(setTimeout).toHaveBeenNthCalledWith(1, expect.any(Function), 30000);
     expect(setTimeout).toHaveBeenNthCalledWith(2, expect.any(Function), 300);
     expect(shutdownListener).toHaveBeenCalledTimes(1);
+    expect(shutdownListener).toHaveBeenNthCalledWith(1, expect.any(Error), 'SIGTERM');
     expect(exitListener).toHaveBeenCalledTimes(1);
   });
 
-  it('default parameter values', async () => {
+  it('default parameter values [SIGTERM]', async () => {
     const shutdownListener = jest.fn();
     const exitListener = jest.fn();
     const nexit = new Nexit({
@@ -57,6 +58,29 @@ describe('Nexit', () => {
     expect(setTimeout).toHaveBeenNthCalledWith(1, expect.any(Function), 10000);
     expect(setTimeout).toHaveBeenNthCalledWith(2, expect.any(Function), 100);
     expect(shutdownListener).toHaveBeenCalledTimes(1);
+    expect(shutdownListener).toHaveBeenNthCalledWith(1, expect.any(Error), 'SIGTERM');
+    expect(exitListener).toHaveBeenCalledTimes(1);
+  });
+
+  it('default parameter values [SIGINT]', async () => {
+    const shutdownListener = jest.fn();
+    const exitListener = jest.fn();
+    const nexit = new Nexit({
+      shutdownDelay: 10000,
+      exitDelay: 100,
+    });
+    nexit.on(NEXIT_SHUTDOWN, shutdownListener);
+    nexit.on(NEXIT_EXIT, exitListener);
+
+    process.kill(process.pid, 'SIGINT');
+
+    jest.runAllTimers();
+
+    expect(setTimeout).toHaveBeenCalledTimes(2);
+    expect(setTimeout).toHaveBeenNthCalledWith(1, expect.any(Function), 10000);
+    expect(setTimeout).toHaveBeenNthCalledWith(2, expect.any(Function), 100);
+    expect(shutdownListener).toHaveBeenCalledTimes(1);
+    expect(shutdownListener).toHaveBeenNthCalledWith(1, expect.any(Error), 'SIGINT');
     expect(exitListener).toHaveBeenCalledTimes(1);
   });
 
@@ -77,6 +101,7 @@ describe('Nexit', () => {
     expect(setTimeout).toHaveBeenNthCalledWith(1, expect.any(Function), 30000);
     expect(setTimeout).toHaveBeenNthCalledWith(2, expect.any(Function), 300);
     expect(shutdownListener).toHaveBeenCalledTimes(1);
+    expect(shutdownListener).toHaveBeenNthCalledWith(1, expect.any(Error), 'SIGTERM');
     expect(exitListener).toHaveBeenCalledTimes(1);
   });
 });

@@ -4,8 +4,8 @@ const Nexit = require('nexit');
 const app = express();
 
 const nexit = new Nexit.Nexit();
-nexit.on(Nexit.NEXIT_SHUTDOWN, () => {
-  console.log('server is shutting down...');
+nexit.on(Nexit.NEXIT_SHUTDOWN, (error, signal) => {
+  console.log(`server is shutting down with signal: ${signal}`, error);
   app.set('isShuttingDown', true);
 });
 nexit.on(Nexit.NEXIT_EXIT, () => {

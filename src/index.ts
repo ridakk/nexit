@@ -18,13 +18,15 @@ class Nexit extends EventEmitter {
     this.shutdownDelay = shutdownDelay;
     this.exitDelay = exitDelay;
 
+    this.graceful = this.graceful.bind(this);
+
     this.bindHandlers();
   }
 
   private bindHandlers(): void {
-    process.on('uncaughtException', this.graceful.bind(this));
-    process.on('SIGTERM', this.graceful.bind(this));
-    process.on('SIGINT', this.graceful.bind(this));
+    process.on('uncaughtException', this.handleUncaughtException.bind(this));
+    process.on('SIGTERM', this.handleSignal.bind(this, 'SIGTERM'));
+    process.on('SIGINT', this.handleSignal.bind(this, 'SIGINT'));
   }
 
   private unbindHandlers(): void {
@@ -33,14 +35,22 @@ class Nexit extends EventEmitter {
     process.removeAllListeners('SIGINT');
   }
 
-  private graceful(err: Error): void {
+  private handleSignal(signal: string): void {
+    this.graceful(signal, new Error(signal));
+  }
+
+  private handleUncaughtException(err: Error): void {
+    this.graceful('uncaughtException', err);
+  }
+
+  private graceful(signal: string, err: Error): void {
     if (this.isShuttingDown) {
       return;
     }
 
     this.isShuttingDown = true;
     this.unbindHandlers();
-    this.emit(NEXIT_SHUTDOWN, err);
+    this.emit(NEXIT_SHUTDOWN, err, signal);
 
     setTimeout(() => {
       this.emit(NEXIT_EXIT);
